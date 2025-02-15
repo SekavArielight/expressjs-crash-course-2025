@@ -1,13 +1,19 @@
  const express = require('express');
+ const path = require('path');
 
 const app = express();
 
-app.get('/', (req, res) => {
-    res.send("<h1>Hello Express</h1>");
-});
+// Setup static folder
+// app.use(express.static(path.join(__dirname, 'public')));
 
-app.get('/about', (req, res) => {
-    res.send("<h1>About Express</h1>");
+let posts = [
+    {id: 1, title: 'Post One'},
+    {id: 2, title: 'Post Two'},
+    {id: 3, title: 'Post Three'}
+]
+
+app.get('/api/posts', (req, res) => {
+    res.json(posts);
 });
 
 app.listen(3000, () => console.log(`Server is running on port 3000`));
